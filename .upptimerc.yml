@@ -17,16 +17,11 @@ status-website:
   # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
   cname: status.astron.live
   # baseUrl: /your-repo-name
-  logoUrl: https://astron.live/assets/apple-touch-icon.png
   themeUrl: https://status.astron.live/astron-theme.css
-  name: Astron Status
+  name: "[ ASTRON STATUS ]"
   introTitle: "**Astron Status**"
   introMessage: Real-time status for our services.
-  navbar:
-    - title: Status
-      href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
+  navbar: []
 
 # Upptime also supports notifications, assigning issues, and more
 # See https://upptime.js.org/docs/configuration
