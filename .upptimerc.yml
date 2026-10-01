@@ -64,6 +64,7 @@ status-website:
           document.getElementById('custom-ui').style.display = 'flex';
           document.getElementById('custom-bg').style.display = 'block';
           
+          const startTime = Date.now();
           gsap.from(".background", { duration: 2, opacity: 0, ease: "power2.inOut" });
           gsap.from(".header", { duration: 1.2, y: -30, opacity: 0, ease: "power3.out", delay: 0.3 });
           gsap.from(".placeholder-item", { duration: 1, y: -40, opacity: 0, stagger: 0.15, ease: "back.out(1.2)", delay: 0.8 });
@@ -82,7 +83,7 @@ status-website:
                   const displayName = nameMap[site.name] || site.name;
                   const pingText = '<span style="font-size: 0.85em; opacity: 0.6; display: block; margin-top: 2px;">' + site.time + 'ms</span>';
                   
-                  html += '<a href="' + link + '" class="mod-item-link dynamic-item" target="_blank" style="opacity:0">' +
+                  html += '<a href="' + link + '" class="mod-item-link dynamic-item" target="_blank">' +
                           '<div class="mod-item">' +
                               '<span class="mod-number">[' + num + ']</span>' +
                               '<span class="mod-name">' + displayName + '</span>' +
@@ -94,7 +95,19 @@ status-website:
                       '</a>';
               });
               document.getElementById('status-list').innerHTML = html;
-              gsap.to(".dynamic-item", { duration: 0.5, opacity: 1, y: 0, stagger: 0.1, ease: "power2.out" });
+              
+              const elapsed = (Date.now() - startTime) / 1000;
+              let remainingDelay = 0.8 - elapsed;
+              if (remainingDelay < 0) remainingDelay = 0;
+              
+              gsap.from(".dynamic-item", { 
+                  duration: 1, 
+                  y: -40, 
+                  opacity: 0, 
+                  stagger: 0.15, 
+                  ease: "back.out(1.2)", 
+                  delay: remainingDelay 
+              });
           }).catch(e => {
               console.error(e);
           });
