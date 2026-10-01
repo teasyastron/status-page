@@ -1,24 +1,4 @@
 #sapper { display: none !important; }
-
-@font-face {
-    font-family: 'Space Mono';
-    src: url('SpaceMono-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Space Mono';
-    src: url('SpaceMono-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Archivo Black';
-    src: url('ArchivoBlack-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -41,7 +21,7 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('https://astron.live/assets/bg.png'); /* Fix path to absolute */
+    background-image: url('assets/bg.png'); /* The local uploaded background */
     background-size: cover;
     background-position: center bottom;
     z-index: 0;
@@ -120,6 +100,7 @@ body, html {
     display: block;
     text-decoration: none;
     color: inherit;
+    /* Removed transition: opacity to avoid conflict with GSAP */
     transition: filter 0.3s ease;
 }
 
@@ -148,13 +129,24 @@ body, html {
     text-align: right;
 }
 
-.mod-status-indicator {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    display: inline-block;
-    justify-self: end;
+/* --- Hero Text (ASTRON) --- */
+.hero-text {
+    position: absolute;
+    bottom: -1.5vw; /* Collé au bas de la page (compense l'espace sous la police) */
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 26vw;
+    line-height: 0.75;
+    color: white;
+    text-transform: lowercase;
+    letter-spacing: -0.06em;
+    z-index: 2;
+    pointer-events: none;
+    transform: scaleX(1.15);
+    opacity: 0.25; 
+    mix-blend-mode: screen; /* Screen avec opacité réduite rend bien sur les couchers de soleil */
 }
-.mod-status-indicator.up { background-color: #10b981; box-shadow: 0 0 10px #10b981; }
-.mod-status-indicator.degraded { background-color: #f59e0b; box-shadow: 0 0 10px #f59e0b; }
-.mod-status-indicator.down { background-color: #ef4444; box-shadow: 0 0 10px #ef4444; }
+
+.mod-status-indicator { width: 10px; height: 10px; border-radius: 50%; display: inline-block; justify-self: end; } .mod-status-indicator.up { background-color: #10b981; box-shadow: 0 0 10px #10b981; } .mod-status-indicator.degraded { background-color: #f59e0b; box-shadow: 0 0 10px #f59e0b; } .mod-status-indicator.down { background-color: #ef4444; box-shadow: 0 0 10px #ef4444; }
