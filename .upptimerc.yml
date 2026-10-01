@@ -57,24 +57,28 @@ status-website:
 
           fetch('https://raw.githubusercontent.com/teasyastron/status-page/master/history/summary.json').then(r => r.json()).then(data => {
               let html = '';
+              const nameMap = { 'Astron': 'astron', 'Rubber': 'Rubber', 'DNF': 'DNF Academy', 'CDN': 'astronCDN' };
+              
               data.forEach((site, index) => {
                   const num = String(index + 1).padStart(2, '0');
                   const isUp = site.status === 'up';
                   const isDegraded = site.status === 'degraded';
-                  const statusText = isUp ? 'Online (' + site.time + 'ms)' : (isDegraded ? 'Degraded' : 'Offline');
+                  const statusText = isUp ? 'Online' : (isDegraded ? 'Degraded' : 'Offline');
                   const indicatorClass = isUp ? 'up' : (isDegraded ? 'degraded' : 'down');
                   const link = site.url || '#';
+                  const displayName = nameMap[site.name] || site.name;
+                  const pingText = '<span style="font-size: 0.85em; opacity: 0.6; display: block; margin-top: 2px;">' + site.time + 'ms</span>';
                   
-                  html += `
-                      <a href="${link}" class="mod-item-link dynamic-item" target="_blank" style="opacity:0">
-                          <div class="mod-item">
-                              <span class="mod-number">[${num}]</span>
-                              <span class="mod-name">${site.name}</span>
-                              <span class="mod-desc">${statusText}</span>
-                              <span class="mod-status-indicator ${indicatorClass}"></span>
-                          </div>
-                      </a>
-                  `;
+                  html += '<a href="' + link + '" class="mod-item-link dynamic-item" target="_blank" style="opacity:0">' +
+                          '<div class="mod-item">' +
+                              '<span class="mod-number">[' + num + ']</span>' +
+                              '<span class="mod-name">' + displayName + '</span>' +
+                              '<span class="mod-desc" style="text-align: right; display: flex; flex-direction: column; align-items: flex-end;">' +
+                                  '<span style="display: flex; align-items: center; gap: 8px;">' + statusText + ' <span class="mod-status-indicator ' + indicatorClass + '"></span></span>' +
+                                  pingText +
+                              '</span>' +
+                          '</div>' +
+                      '</a>';
               });
               document.getElementById('status-list').innerHTML = html;
               gsap.to(".dynamic-item", { duration: 0.5, opacity: 1, y: 0, stagger: 0.1, ease: "power2.out" });
