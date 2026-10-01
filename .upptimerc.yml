@@ -36,15 +36,25 @@ status-website:
         </header>
         <main class="content">
             <div class="mods-list" id="status-list">
-                <div class="mod-item"><span class="mod-name">Loading status...</span></div>
+                <a class="mod-item-link placeholder-item">
+                    <div class="mod-item">
+                        <span class="mod-number">[..]</span>
+                        <span class="mod-name">LOADING</span>
+                        <span class="mod-desc"></span>
+                    </div>
+                </a>
             </div>
         </main>
-        <div class="hero-text">astron</div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
       if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
           document.getElementById('custom-ui').style.display = 'flex';
+          
+          gsap.from(".background", { duration: 2, opacity: 0, ease: "power2.inOut" });
+          gsap.from(".header", { duration: 1.2, y: -30, opacity: 0, ease: "power3.out", delay: 0.3 });
+          gsap.from(".placeholder-item", { duration: 1, y: -40, opacity: 0, stagger: 0.15, ease: "back.out(1.2)", delay: 0.8 });
+
           fetch('https://raw.githubusercontent.com/teasyastron/status-page/master/history/summary.json').then(r => r.json()).then(data => {
               let html = '';
               data.forEach((site, index) => {
@@ -56,7 +66,7 @@ status-website:
                   const link = site.url || '#';
                   
                   html += \`
-                      <a href="\${link}" class="mod-item-link" target="_blank">
+                      <a href="\${link}" class="mod-item-link dynamic-item" target="_blank" style="opacity:0">
                           <div class="mod-item">
                               <span class="mod-number">[\${num}]</span>
                               <span class="mod-name">\${site.name}</span>
@@ -67,12 +77,9 @@ status-website:
                   \`;
               });
               document.getElementById('status-list').innerHTML = html;
-              
-              gsap.from(".background", { duration: 2, opacity: 0, ease: "power2.inOut" });
-              gsap.from(".header", { duration: 1.2, y: -30, opacity: 0, ease: "power3.out", delay: 0.3 });
-              gsap.from(".mod-item-link", { duration: 1, y: -40, opacity: 0, stagger: 0.15, ease: "back.out(1.2)", delay: 0.8 });
+              gsap.to(".dynamic-item", { duration: 0.5, opacity: 1, y: 0, stagger: 0.1, ease: "power2.out" });
           }).catch(e => {
-              document.getElementById('status-list').innerHTML = '<div class="mod-item"><span class="mod-name" style="color:red">Error loading status</span></div>';
+              console.error(e);
           });
       }
     </script>

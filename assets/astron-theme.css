@@ -1,5 +1,18 @@
 #sapper { display: none !important; }
 
+@font-face {
+    font-family: 'Space Mono';
+    src: url('https://astron.live/assets/SpaceMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Space Mono';
+    src: url('https://astron.live/assets/SpaceMono-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -101,7 +114,6 @@ body, html {
     display: block;
     text-decoration: none;
     color: inherit;
-    /* Removed transition: opacity to avoid conflict with GSAP */
     transition: filter 0.3s ease;
 }
 
@@ -140,23 +152,3 @@ body, html {
 .mod-status-indicator.up { background-color: #10b981; box-shadow: 0 0 10px #10b981; }
 .mod-status-indicator.degraded { background-color: #f59e0b; box-shadow: 0 0 10px #f59e0b; }
 .mod-status-indicator.down { background-color: #ef4444; box-shadow: 0 0 10px #ef4444; }
-
-/* --- Hero Text (ASTRON) --- */
-.hero-text {
-    position: absolute;
-    bottom: -1.5vw;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 26vw;
-    line-height: 0.75;
-    color: white;
-    text-transform: lowercase;
-    letter-spacing: -0.06em;
-    z-index: 2;
-    pointer-events: none;
-    transform: scaleX(1.15);
-    opacity: 0.25; 
-    mix-blend-mode: screen;
-}
