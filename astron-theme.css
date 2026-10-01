@@ -2,14 +2,20 @@
 
 @font-face {
     font-family: 'Space Mono';
-    src: url('https://astron.live/assets/SpaceMono-Regular.ttf') format('truetype');
+    src: url('SpaceMono-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 @font-face {
     font-family: 'Space Mono';
-    src: url('https://astron.live/assets/SpaceMono-Bold.ttf') format('truetype');
+    src: url('SpaceMono-Bold.ttf') format('truetype');
     font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Archivo Black';
+    src: url('ArchivoBlack-Regular.ttf') format('truetype');
+    font-weight: 400;
     font-style: normal;
 }
 
@@ -123,7 +129,7 @@ body, html {
 
 .mod-item {
     display: grid;
-    grid-template-columns: 45px 150px 100px auto;
+    grid-template-columns: 45px 150px auto;
     gap: 1rem;
     text-transform: uppercase;
     align-items: center;
