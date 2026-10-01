@@ -22,6 +22,60 @@ status-website:
   introTitle: "**Astron Status**"
   introMessage: Real-time status for our services.
   navbar: []
+  customBodyHtml: |
+    <div class="background">
+        <div class="bg-overlay"></div>
+    </div>
+    <div class="container" id="custom-ui" style="display: none;">
+        <header class="header">
+            <div class="logo">[ASTRON]</div>
+            <div class="nav-right">
+                <a href="https://astron.live">HOME</a>
+                <a href="mailto:hi@astron.live">CONTACT</a>
+            </div>
+        </header>
+        <main class="content">
+            <div class="mods-list" id="status-list">
+                <div class="mod-item"><span class="mod-name">Loading status...</span></div>
+            </div>
+        </main>
+        <div class="hero-text">astron</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+      if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+          document.getElementById('custom-ui').style.display = 'flex';
+          fetch('https://raw.githubusercontent.com/teasyastron/status-page/master/history/summary.json').then(r => r.json()).then(data => {
+              let html = '';
+              data.forEach((site, index) => {
+                  const num = String(index + 1).padStart(2, '0');
+                  const isUp = site.status === 'up';
+                  const isDegraded = site.status === 'degraded';
+                  const statusText = isUp ? 'Online (' + site.time + 'ms)' : (isDegraded ? 'Degraded' : 'Offline');
+                  const indicatorClass = isUp ? 'up' : (isDegraded ? 'degraded' : 'down');
+                  const link = site.url || '#';
+                  
+                  html += \`
+                      <a href="\${link}" class="mod-item-link" target="_blank">
+                          <div class="mod-item">
+                              <span class="mod-number">[\${num}]</span>
+                              <span class="mod-name">\${site.name}</span>
+                              <span class="mod-desc">\${statusText}</span>
+                              <span class="mod-status-indicator \${indicatorClass}"></span>
+                          </div>
+                      </a>
+                  \`;
+              });
+              document.getElementById('status-list').innerHTML = html;
+              
+              gsap.from(".background", { duration: 2, opacity: 0, ease: "power2.inOut" });
+              gsap.from(".header", { duration: 1.2, y: -30, opacity: 0, ease: "power3.out", delay: 0.3 });
+              gsap.from(".mod-item-link", { duration: 1, y: -40, opacity: 0, stagger: 0.15, ease: "back.out(1.2)", delay: 0.8 });
+          }).catch(e => {
+              document.getElementById('status-list').innerHTML = '<div class="mod-item"><span class="mod-name" style="color:red">Error loading status</span></div>';
+          });
+      }
+    </script>
 
 # Upptime also supports notifications, assigning issues, and more
 # See https://upptime.js.org/docs/configuration
