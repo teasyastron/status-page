@@ -215,7 +215,7 @@ status-website:
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
       if (true) {
-          document.getElementById('custom-ui').style.display = 'flex';
+          document.body.appendChild(document.getElementById('custom-bg')); document.body.appendChild(document.getElementById('custom-ui')); document.getElementById('custom-ui').style.display = 'flex';
           document.getElementById('custom-bg').style.display = 'block';
           
           const startTime = Date.now();
