@@ -18,11 +18,12 @@ status-website:
   cname: status.astron.live
   # baseUrl: /your-repo-name
   themeUrl: https://status.astron.live/astron-theme.css
-  name: "[ ASTRON STATUS ]"
+  name: "Status - astron"
   introTitle: "**Astron Status**"
   introMessage: Real-time status for our services.
   navbar: []
   customHeadHtml: |
+    <title>Status - astron</title>
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
