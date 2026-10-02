@@ -34,159 +34,159 @@ status-website:
         @font-face { font-family: 'Archivo Black'; src: url('assets/ArchivoBlack-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
         .hero-text { position: absolute; bottom: -1.5vw; left: 0; width: 100%; text-align: center; font-family: 'Archivo Black', sans-serif; font-size: 26vw; line-height: 0.75; color: white; text-transform: lowercase; letter-spacing: -0.06em; z-index: 2; pointer-events: none; transform: scaleX(1.15); opacity: 0.25; mix-blend-mode: screen; }
     
-#sapper { display: none !important; }
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body, html {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    background-color: #0c1b33; /* Fallback color */
-    color: white;
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-.background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('assets/bg.png'); /* The local uploaded background */
-    background-size: cover;
-    background-position: center bottom;
-    z-index: 0;
-}
-
-.bg-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(12, 27, 51, 0.1) 0%, rgba(12, 27, 51, 0.4) 100%);
-    z-index: 1;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding: 2rem 3rem;
-    position: relative;
-    z-index: 2;
-}
-
-/* --- Header & Navigation --- */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-}
-
-.nav-right {
-    display: flex;
-    gap: 2rem;
-}
-
-.logo {
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 0.8rem;
-}
-
-.nav-right a {
-    color: white;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: opacity 0.3s ease;
-}
-
-.nav-right a:hover {
-    opacity: 0.7;
-}
-
-/* --- Main Content (Mods List) --- */
-.content {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    padding-top: 6rem;
-}
-
-.mods-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    width: fit-content;
-}
-
-.mod-item-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    /* Removed transition: opacity to avoid conflict with GSAP */
-    transition: filter 0.3s ease;
-}
-
-.mod-item-link:hover {
-    filter: brightness(70%);
-}
-
-.mod-item {
-    display: grid;
-    grid-template-columns: 45px 150px auto;
-    gap: 1rem;
-    text-transform: uppercase;
-    align-items: center;
-}
-
-.mod-number {
-    opacity: 0.8;
-}
-
-.mod-name {
-    font-weight: 700;
-}
-
-.mod-desc {
-    opacity: 0.9;
-    text-align: right;
-}
-
-/* --- Hero Text (ASTRON) --- */
-.hero-text {
-    position: absolute;
-    bottom: -1.5vw; /* Collé au bas de la page (compense l'espace sous la police) */
-    left: 0;
-    width: 100%;
-    text-align: center;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 26vw;
-    line-height: 0.75;
-    color: white;
-    text-transform: lowercase;
-    letter-spacing: -0.06em;
-    z-index: 2;
-    pointer-events: none;
-    transform: scaleX(1.15);
-    opacity: 0.25; 
-    mix-blend-mode: screen; /* Screen avec opacité réduite rend bien sur les couchers de soleil */
-}
-
-.mod-status-indicator { width: 10px; height: 10px; border-radius: 50%; display: inline-block; justify-self: end; } .mod-status-indicator.up { background-color: #10b981; box-shadow: 0 0 10px #10b981; } .mod-status-indicator.degraded { background-color: #f59e0b; box-shadow: 0 0 10px #f59e0b; } .mod-status-indicator.down { background-color: #ef4444; box-shadow: 0 0 10px #ef4444; }
-</style>
+    #sapper { display: none !important; }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body, html {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background-color: #0c1b33; /* Fallback color */
+        color: white;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+    
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('assets/bg.png'); /* The local uploaded background */
+        background-size: cover;
+        background-position: center bottom;
+        z-index: 0;
+    }
+    
+    .bg-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(12, 27, 51, 0.1) 0%, rgba(12, 27, 51, 0.4) 100%);
+        z-index: 1;
+    }
+    
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 2rem 3rem;
+        position: relative;
+        z-index: 2;
+    }
+    
+    /* --- Header & Navigation --- */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+    }
+    
+    .nav-right {
+        display: flex;
+        gap: 2rem;
+    }
+    
+    .logo {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 0.8rem;
+    }
+    
+    .nav-right a {
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: opacity 0.3s ease;
+    }
+    
+    .nav-right a:hover {
+        opacity: 0.7;
+    }
+    
+    /* --- Main Content (Mods List) --- */
+    .content {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        padding-top: 6rem;
+    }
+    
+    .mods-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+        width: fit-content;
+    }
+    
+    .mod-item-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        /* Removed transition: opacity to avoid conflict with GSAP */
+        transition: filter 0.3s ease;
+    }
+    
+    .mod-item-link:hover {
+        filter: brightness(70%);
+    }
+    
+    .mod-item {
+        display: grid;
+        grid-template-columns: 45px 150px auto;
+        gap: 1rem;
+        text-transform: uppercase;
+        align-items: center;
+    }
+    
+    .mod-number {
+        opacity: 0.8;
+    }
+    
+    .mod-name {
+        font-weight: 700;
+    }
+    
+    .mod-desc {
+        opacity: 0.9;
+        text-align: right;
+    }
+    
+    /* --- Hero Text (ASTRON) --- */
+    .hero-text {
+        position: absolute;
+        bottom: -1.5vw; /* Collé au bas de la page (compense l'espace sous la police) */
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 26vw;
+        line-height: 0.75;
+        color: white;
+        text-transform: lowercase;
+        letter-spacing: -0.06em;
+        z-index: 2;
+        pointer-events: none;
+        transform: scaleX(1.15);
+        opacity: 0.25; 
+        mix-blend-mode: screen; /* Screen avec opacité réduite rend bien sur les couchers de soleil */
+    }
+    
+    .mod-status-indicator { width: 10px; height: 10px; border-radius: 50%; display: inline-block; justify-self: end; } .mod-status-indicator.up { background-color: #10b981; box-shadow: 0 0 10px #10b981; } .mod-status-indicator.degraded { background-color: #f59e0b; box-shadow: 0 0 10px #f59e0b; } .mod-status-indicator.down { background-color: #ef4444; box-shadow: 0 0 10px #ef4444; }
+        </style>
   customBodyHtml: |
     <div class="background" id="custom-bg" style="display: none;">
         <div class="bg-overlay"></div>
@@ -270,3 +270,4 @@ body, html {
 
 # Upptime also supports notifications, assigning issues, and more
 # See https://upptime.js.org/docs/configuration
+
